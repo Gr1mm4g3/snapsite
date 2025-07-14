@@ -1,4 +1,8 @@
-export function CTA() {
+interface CTAProps {
+  onGetStarted: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+export function CTA({ onGetStarted }: CTAProps) {
   return (
     <div className="bg-gradient-to-r from-cyan-500/10 to-magenta-500/10 p-8 rounded-2xl border border-border/50">
       <h2 className="text-2xl md:text-3xl font-bold mb-4">Ready to transform your designs?</h2>
@@ -8,7 +12,13 @@ export function CTA() {
       <div className="flex flex-col sm:flex-row gap-4 justify-center">
         <button 
           className="px-6 py-3 bg-cyan-500 hover:bg-cyan-600 text-white font-medium rounded-lg transition-colors"
-          onClick={() => document.getElementById('file-upload')?.click()}
+          onClick={() => {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = 'image/*';
+            input.onchange = (e) => onGetStarted(e as unknown as React.ChangeEvent<HTMLInputElement>);
+            input.click();
+          }}
         >
           Get Started for Free
         </button>

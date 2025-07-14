@@ -3,9 +3,13 @@ import { Upload } from 'lucide-react';
 interface HeroProps {
   onFileChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onDrop: (e: React.DragEvent) => void;
+  isUploading: boolean;
+  error: string | null;
+  isReady: boolean;
+  isLoaded: boolean;
 }
 
-export function Hero({ onFileChange, onDrop }: HeroProps) {
+export function Hero({ onFileChange, onDrop, isUploading, error, isReady, isLoaded }: HeroProps) {
   return (
     <div className="flex flex-col items-center justify-center px-4 pt-8 text-center">
       <div className="max-w-4xl mx-auto">
@@ -20,18 +24,42 @@ export function Hero({ onFileChange, onDrop }: HeroProps) {
           <div 
             className="border-2 border-dashed border-border rounded-xl h-64 flex items-center justify-center bg-background/50 dark:bg-background/20"
             onDrop={onDrop}
-            onDragOver={(e) => e.preventDefault()}
+            onDragOver={(e) => {
+              e.preventDefault();
+              if (!isReady) {
+                e.dataTransfer.dropEffect = 'none';
+              }
+            }}
+            style={!isReady ? { pointerEvents: 'none' } : {}}
           >
             <div className="text-center p-6">
               <Upload className="w-12 h-12 mx-auto mb-4 text-muted-foreground" />
-              <p className="text-lg font-medium mb-2">Drag & drop your screenshot here</p>
-              <p className="text-sm text-muted-foreground mb-4">or click to browse files</p>
-              <button 
-                className="px-6 py-3 bg-cyan-500 hover:bg-cyan-600 text-white font-medium rounded-lg transition-colors"
-                onClick={() => document.getElementById('file-upload')?.click()}
-              >
-                Select File
-              </button>
+              {isUploading ? (
+                <div className="flex flex-col items-center">
+                  <div className="w-8 h-8 border-4 border-cyan-500 border-t-transparent rounded-full animate-spin mb-4"></div>
+                  <p className="text-cyan-500">Processing your file...</p>
+                </div>
+              ) : (
+                <>
+                  <p className="text-lg font-medium mb-2">Drag & drop your screenshot here</p>
+                  <p className="text-sm text-muted-foreground mb-4">or click to browse files</p>
+                  <button 
+                    className={`px-6 py-3 font-medium rounded-lg transition-colors ${
+                      isReady 
+                        ? 'bg-cyan-500 hover:bg-cyan-600 text-white' 
+                        : 'bg-gray-300 cursor-not-allowed text-gray-500'
+                    }`}
+                    onClick={() => document.getElementById('file-upload')?.click()}
+                    disabled={!isReady || isUploading}
+                    title={!isReady ? (isLoaded ? 'Please sign in to upload files' : 'Loading...') : ''}
+                  >
+                    {isReady ? 'Select File' : (isLoaded ? 'Sign in to upload' : 'Loading...')}
+                  </button>
+                </>
+              )}
+              {error && (
+                <p className="mt-4 text-red-500 text-sm">{error}</p>
+              )}
             </div>
           </div>
           <input
