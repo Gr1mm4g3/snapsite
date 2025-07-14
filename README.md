@@ -1,36 +1,100 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# README.md
 
-## Getting Started
+## 🚀 Project: Snapsite — One-Click Website from an Image
 
-First, run the development server:
+**Snapsite** is an AI-powered tool that turns screenshots, sketches, or design mockups into fully responsive websites. Just upload an image — Snapsite analyzes its layout and content, then generates the HTML/CSS/JS code instantly.
+
+---
+
+## 🔥 Features
+
+- 🖼️ **Image-to-Code Conversion** — Upload an image, get a full website
+- ✨ **AI-Powered Layout Detection** — GPT-4 Vision interprets structure, hierarchy, and intent
+- 🖥️ **Responsive Design** — TailwindCSS-based output works across all devices
+- 👁️ **Live Preview** — See and edit generated site in real time
+- 🚜 **Download & Deploy** — Export as ZIP, or deploy to your own subdomain in seconds
+
+---
+
+## 🧠 Ideal For
+
+- Designers with mockups or Dribbble shots
+- Marketers with landing page sketches
+- Founders with wireframes
+- Creators with screenshots of sites they love
+
+---
+
+## 🛠️ Tech Stack
+
+- **Frontend**: Next.js + React + TailwindCSS
+- **AI Layer**: GPT-4 Vision + layout heuristics
+- **Authentication**: Clerk
+- **Storage**: Supabase + UploadThing / Cloudinary
+- **Deployment**: Vercel (subdomains)
+- **Optional**: Stripe for premium exports/deployment
+
+---
+
+## 📝 Getting Started (Local Dev)
 
 ```bash
-npm run dev
-# or
+# Clone the repo
+git clone https://github.com/your-org/snapsite.git
+cd snapsite
+
+# Install dependencies
+yarn install
+
+# Setup env variables (Clerk, Supabase, OpenAI keys)
+cp .env.example .env.local
+
+# Run the dev server
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+# ROADMAP.md
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🚤 Snapsite Roadmap
 
-## Learn More
+### 🔹 Phase 1 — MVP
 
-To learn more about Next.js, take a look at the following resources:
+- Image upload
+- GPT-4 Vision layout analysis
+- TailwindCSS-based component matching
+- ZIP export (static site)
+- Basic UI + preview
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 🔹 Phase 2 — Hosted Deployment
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Subdomain routing (user.snapsite.app)
+- Supabase user/project DB
+- Auth via Clerk
+- Live editing tools
 
-## Deploy on Vercel
+### 🔹 Phase 3 — UX & Feature Polish
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Image annotation tools (optional zones/tags)
+- Theme presets & customization
+- Save/edit projects
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 🔹 Phase 4 — Monetization + Growth
+
+- Stripe integration
+- Referral rewards
+- Public showcase/discover page
+- Chrome plugin: "Convert this site to code"
+
+---
+
+## 🚀 Launch Milestones
+
+| Milestone   | Goal                                    |
+| ----------- | --------------------------------------- |
+| v0.1 MVP    | Upload → HTML export working            |
+| v1.0 Beta   | Upload → hosted website, saved projects |
+| v1.5 Launch | Payments, SEO, templates                |
+| v2.0 Scale  | Public showcase + discovery tooling     |
+
