@@ -5,7 +5,6 @@ import { useAuth } from '@clerk/nextjs';
 import { useRouter } from 'next/navigation';
 import { Hero } from './components/home/Hero';
 import { Features } from './components/home/Features';
-import { CTA } from './components/home/CTA';
 
 type UploadState = 'idle' | 'uploading' | 'success' | 'error';
 
@@ -126,9 +125,8 @@ export default function Home() {
           isReady={isReady}
           isLoaded={isLoaded}
         />
-        <div className="max-w-4xl mx-auto px-4">
+        <div className="max-w-4xl mx-auto px-4 py-12">
           <Features />
-          <CTA onGetStarted={handleFileChange} />
         </div>
       </main>
     </div>
