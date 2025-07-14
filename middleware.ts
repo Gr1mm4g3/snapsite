@@ -16,7 +16,7 @@ const protectedApiRoutes = ['/api/upload'];
 
 // Check if the path is for a static file
 const isStaticFile = (path: string) => {
-  return /\.(jpg|jpeg|png|gif|ico|svg|css|js|woff|woff2|ttf|eot)$/i.test(path);
+  return /\/(public\/|_next\/static\/|_next\/image\/|favicon\.ico$|.*\.(jpg|jpeg|png|gif|ico|svg|css|js|woff|woff2|ttf|eot)$)/i.test(path);
 };
 
 // This is needed to handle file uploads in Next.js 13+
@@ -75,6 +75,11 @@ export default clerkMiddleware(async (auth, request) => {
   const userId = session?.userId;
   const path = request.nextUrl.pathname;
   
+  // Allow access to sign-in and sign-up pages
+  if (path.startsWith('/sign-in') || path.startsWith('/sign-up')) {
+    return NextResponse.next();
+  }
+  
   // Log the incoming request for debugging
   console.log(`Middleware processing: ${path}`);
   
@@ -84,9 +89,21 @@ export default clerkMiddleware(async (auth, request) => {
     return NextResponse.next();
   }
   
-  // Handle static files and public routes
-  if (isStaticFile(path) || isPublicRoute(request)) {
-    console.log(`Static/Public route allowed: ${path}`);
+  // Handle static files
+  if (isStaticFile(path)) {
+    console.log(`Static file access allowed: ${path}`);
+    return NextResponse.next();
+  }
+  
+  // Handle public routes
+  if (isPublicRoute(request)) {
+    console.log(`Public route allowed: ${path}`);
+    return NextResponse.next();
+  }
+  
+  // Allow access to editor routes - authentication will be handled by the page
+  if (path.startsWith('/editor/')) {
+    console.log('Editor route access allowed, will be handled by page auth');
     return NextResponse.next();
   }
   

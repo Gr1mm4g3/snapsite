@@ -1,53 +1,83 @@
-# README.md
+# Snapsite
 
-## 🚀 Project: Snapsite — One-Click Website from an Image
+## 🚀 Turn Images into Websites with AI
 
-**Snapsite** is an AI-powered tool that turns screenshots, sketches, or design mockups into fully responsive websites. Just upload an image — Snapsite analyzes its layout and content, then generates the HTML/CSS/JS code instantly.
-
----
-
-## 🔥 Features
-
-- 🖼️ **Image-to-Code Conversion** — Upload an image, get a full website
-- ✨ **AI-Powered Layout Detection** — GPT-4 Vision interprets structure, hierarchy, and intent
-- 🖥️ **Responsive Design** — TailwindCSS-based output works across all devices
-- 👁️ **Live Preview** — See and edit generated site in real time
-- 🚜 **Download & Deploy** — Export as ZIP, or deploy to your own subdomain in seconds
+**Snapsite** is an AI-powered tool that transforms your screenshots, sketches, or design mockups into fully responsive websites. Upload an image, and let Snapsite handle the rest — from layout analysis to code generation.
 
 ---
 
-## 🧠 Ideal For
+## ✨ Features
 
-- Designers with mockups or Dribbble shots
-- Marketers with landing page sketches
-- Founders with wireframes
-- Creators with screenshots of sites they love
+- 🖼️ **Image Upload** — Drag and drop or select images to get started
+- 🔒 **Secure Authentication** — Built with Clerk for secure user management
+- 🎨 **Image Editor** — Basic editing tools for your uploaded images
+- 🖥️ **Responsive Preview** — See how your site looks on different devices
+- 🚀 **Fast & Modern** — Built with Next.js 15 and TypeScript for optimal performance
+- 🎨 **Beautiful UI** — Clean, accessible interface using shadcn/ui components
+
+---
+
+## 🎯 Use Cases
+
+- Designers turning mockups into working prototypes
+- Developers quickly creating landing pages from images
+- Content creators building portfolio sites
+- Anyone who wants to turn visual ideas into real websites
 
 ---
 
 ## 🛠️ Tech Stack
 
-- **Frontend**: Next.js + React + TailwindCSS
-- **AI Layer**: GPT-4 Vision + layout heuristics
+- **Frontend**: Next.js 15 + React 18 + TypeScript
+- **Styling**: TailwindCSS + shadcn/ui
 - **Authentication**: Clerk
-- **Storage**: Supabase + UploadThing / Cloudinary
-- **Deployment**: Vercel (subdomains)
-- **Optional**: Stripe for premium exports/deployment
+- **Image Processing**: Next.js Image Optimization
+- **State Management**: React Hooks + Context API
+- **Deployment**: Vercel (Platform as a Service)
 
 ---
 
-## 📝 Getting Started (Local Dev)
+## 🚀 Getting Started
 
-```bash
-# Clone the repo
-git clone https://github.com/your-org/snapsite.git
-cd snapsite
+### Prerequisites
+- Node.js 18.0.0 or later
+- npm or yarn package manager
+- Clerk account (for authentication)
 
-# Install dependencies
-yarn install
+### Local Development
 
-# Setup env variables (Clerk, Supabase, OpenAI keys)
-cp .env.example .env.local
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-org/snapsite.git
+   cd snapsite
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
+
+3. Set up environment variables:
+   Create a `.env.local` file in the root directory and add your Clerk credentials:
+   ```
+   NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_publishable_key
+   CLERK_SECRET_KEY=your_secret_key
+   NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
+   NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
+   NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=/dashboard
+   NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/dashboard
+   ```
+
+4. Run the development server:
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   ```
+
+5. Open [http://localhost:3000](http://localhost:3000) in your browser to see the result.
 
 # Run the dev server
 yarn dev
